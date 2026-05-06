@@ -17,12 +17,13 @@ services:
       - mysql
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "10.0.0.1:8080:80"
     environment:
       WORDPRESS_DB_HOST: mysql
       WORDPRESS_DB_USER: ${MYSQL_USER}
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_CONFIG_EXTRA: |
     volumes:
       - /srv/docker/wordpress:/var/www/html
 
@@ -30,7 +31,7 @@ services:
     image: jellyfin/jellyfin:latest
     restart: unless-stopped
     ports:
-      - "8096:8096"
+      - "10.0.0.1:8096:8096"
     volumes:
       - /srv/docker/jellyfin:/config
       - /srv/media/:/media
